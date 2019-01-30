@@ -1,0 +1,79 @@
+{
+  "id": "/couchbase-master",
+  "instances": 1,
+  "cpus": 4,
+  "mem": 4096,
+  "disk": 0,
+  "gpus": 0,
+  "constraints": [],
+  "fetch": [],
+  "storeUrls": [],
+  "backoffSeconds": 1,
+  "backoffFactor": 1.15,
+  "maxLaunchDelaySeconds": 3600,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "arungupta/couchbase:dcos",
+      "network": "USER",
+      "portMappings": [
+        {
+          "containerPort": 8091,
+          "servicePort": 10104,
+          "name": "couchbase-net",
+          "labels": {
+            "VIP_0": "/couchbase-master:10104"
+          }
+        }
+      ],
+      "privileged": false,
+      "parameters": [
+      "portMappings": [
+        {
+          "containerPort": 8091,
+          "servicePort": 10104,
+      ],
+      "privileged": false,
+      "parameters": [
+        {
+          "key": "volume-driver",
+          "value": "pxd"
+        },
+        {
+          "key": "volume",
+          "value": "size=100G,repl=4,io_priority=high,scale=3,name=travel_data:/var/lib/traveler"
+        }
+      ],
+      "forcePullImage": false
+    }
+  },
+       ],
+      "forcePullImage": false
+    }
+  },
+  "healthChecks": [],
+  "readinessChecks": [],
+  "dependencies": [],
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 1,
+    "maximumOverCapacity": 1
+  },
+  "ipAddress": {
+    "groups": [],
+    "networkName": "dcos"
+  },
+  "unreachableStrategy": {
+    "inactiveAfterSeconds": 0,
+    "expungeAfterSeconds": 0
+  },
+  "killSelection": "YOUNGEST_FIRST",
+  "requirePorts": false,
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_VHOST": "ec2-52-38-64-57.us-west-2.compute.amazonaws.com"
+  },
+  "env": {
+    "TYPE": "MASTER"
+  }
+}

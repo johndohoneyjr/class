@@ -1,0 +1,9 @@
+kind: Endpoints 
+apiVersion: v1 
+metadata: 
+  name: postgres
+subsets: 
+  - addresses: 
+    - ip: localhost
+    ports: 
+      - port: 5432

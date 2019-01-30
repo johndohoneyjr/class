@@ -1,0 +1,4 @@
+
+List of tasks for Couchbase DCOS Implementation for DC/OS
+
+Integrate with DC/OS vault -- Secure passwords for Administrator -- opposed to hard coded PW

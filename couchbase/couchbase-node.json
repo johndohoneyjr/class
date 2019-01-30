@@ -1,0 +1,68 @@
+{
+    "volumes": [],
+    "id": "/couchbaseworkers",
+    "cmd": null,
+    "args": null,
+    "user": null,
+    "env": {
+        "TYPE": "WORKER",
+        "COUCHBASE_MASTER_VIP": "couchbasemaster.marathon.l4lb.thisdcos.directory",
+        "VIP_SERVICE_PORT": "9000",
+        "SERVICE_PORT": "10105"
+    },
+    "instances": 1,
+    "cpus": 2,
+    "mem": 4096,
+    "disk": 200,
+    "gpus": 0,
+    "executor": "",
+    "constraints": [],
+    "fetch": [],
+    "storeUrls": [],
+    "backoffSeconds": 1,
+    "backoffFactor": 1.15,
+    "maxLaunchDelaySeconds": 3600,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [],
+        "docker": {
+            "image": "rhldcmesboot711.na.rccl.com:5000/couchbase:1.0.10",
+            "network": "BRIDGE",
+            "portMappings": [{
+                "containerPort": 9000,
+                "hostPort": 0,
+                "servicePort": 10105,
+                "protocol": "tcp",
+                "name": "couchbase-net",
+                "labels": {
+                    "VIP_0": "/couchbasemaster:9000"
+                }
+            }],
+            "privileged": false,
+            "parameters": [],
+            "forcePullImage": true
+        }
+    },
+    "healthChecks": [],
+    "readinessChecks": [],
+    "dependencies": [],
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1
+    },
+    "labels": {
+        "HAPROXY_GROUP": "external",
+        "HAPROXY_0_VHOST": "10.16.4.8"
+    },
+    "acceptedResourceRoles": null,
+    "ipAddress": null,
+    "residency": null,
+    "secrets": {},
+    "taskKillGracePeriodSeconds": null,
+    "portDefinitions": [{
+        "port": 10105,
+        "protocol": "tcp",
+        "labels": {}
+    }],
+    "requirePorts": false
+}
