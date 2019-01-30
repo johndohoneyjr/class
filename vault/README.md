@@ -25,8 +25,10 @@ provided under this option will be converted to JSON for the final Vault
 To install the chart, use the following, this backs Vault with a Consul cluster:
 
 ```console
-$ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-$ helm install incubator/vault --set vault.dev=false --set vault.config.storage.consul.address="myconsul-svc-name:8500",vault.config.storage.consul.path="vault"
+Simple installation -- all defaults
+$ helm install ./vault
+
+$ helm install vault --set vault.dev=false --set vault.config.storage.consul.address="myconsul-svc-name:8500",vault.config.storage.consul.path="vault" ./vault
 ```
 
 An alternative example using the Amazon S3 backend can be specified using:
@@ -75,7 +77,7 @@ The following table lists the configurable parameters of the Vault chart and the
 | `consulAgent.gossipKeySecretName` | k8s secret containing gossip key         | `nil` (see values.yaml for details) |
 | `consulAgent.HttpPort`            | HTTP port for consul agent API           | `8500`                              |
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. See above example of usage.
 
 ## Optional Consul Agent
 
